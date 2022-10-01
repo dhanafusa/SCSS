@@ -42,7 +42,7 @@ scss
 
 `index.html`には以下のコードを入力しておきます。
 
-```index.html
+```html:index.html
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -62,7 +62,7 @@ scss
 
 `style.scss`には以下のコードを入力します。
 
-```style.scss
+```scss:style.scss
 h1 {
   color: red;
 }
@@ -76,7 +76,7 @@ CSSへの変換を行うには、`style.scss`を開いた状態でVSCodeの下�
 
 `style.css`の中を見てみると
 
-```style.css
+```css:style.css
 h1 {
   color: red;
 }/*# sourceMappingURL=style.css.map */
@@ -93,7 +93,7 @@ h1 {
 
 ここから、scssの独自の記述方法について解説していきます。
 
-## コメントアウトについて
+## コメントアウト
 
 CSSのコメントアウトは
 
@@ -109,13 +109,13 @@ CSSのコメントアウトは
 
 これは、scss内だけでのコメントになりますので、cssに反映されることはありません。
 
-## ネストについて 
+## ネスト
 
 SCSSでは、ネストを使用して記述することができます。
 
-例えば、h1をhoverした時に色を変えたい場合CSSで記述すると
+例えば、h1をhoverした時に文字色を変えたい場合CSSで記述すると
 
-```
+```css
 h1 {
   color: black;
 }
@@ -125,7 +125,7 @@ h1:hover {
 ```
 となりますが、SCSSで記述すると
 
-```
+```scss
 h1 {
   color: black;
   &:hover {
@@ -141,7 +141,7 @@ h1 {
 
 `index.html`の内容を以下に変更しましょう。
 
-```index.html
+```html:index.html
 <!DOCTYPE html>
 <html lang="ja">
   <head>
@@ -157,4 +157,74 @@ h1 {
     </header>
   </body>
 </html>
+```
+header要素の中にh1があります。
+
+今回はこのheader要素に背景色をつけて、h1には先程のhoverを設定します。
+
+CSSで記述すると
+
+```css:style.css
+header {
+  width: 600px;
+  height: 60px;
+  background-color: #aaafff;
+}
+header h1 {
+  color: black;
+}
+header h1:hover {
+  color: red;
+}
+```
+となりますが、SCSSで記述すると
+
+```scss:style.scss
+header {
+  width: 600px;
+  height: 60px;
+  background-color: #aaafff;
+  & h1 {
+    color: black;
+    &:hover {
+      color: red;
+    }
+  }
+}
+```
+となります。
+
+5行目の
+```
+& h1 {
+```
+は、「&」と「h1」の間にスペースがあります。このスペースは「h1」が「header」の子要素であることを指します。
+
+そして、この場合「&」は省略して次のように書くことができます。
+
+
+```scss:style.scss
+header {
+  width: 600px;
+  height: 60px;
+  background-color: #aaafff;
+  h1 {
+    color: black;
+    &:hover {
+      color: red;
+    }
+  }
+}
+```
+
+SCSSのネストを使うことによって、煩雑になりやすいCSSの記述もシンプルかつ見やすく書くことができます。
+
+## 変数
+
+よく使う値や色などを変数に格納して使用することができます。
+
+例えば、紫をメインカラーで黒をサブカラーと変数で定義しそれを使用するSCSSを記述します。
+
+```scss:style.scss
+
 ```
