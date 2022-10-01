@@ -1,6 +1,6 @@
 ![](sass.svg)
 
-# SCSSの導入と擬似要素について
+# SCSSの導入について
 
 SCSSはSassというCSSを拡張した言語の種類の一つです。
 
@@ -108,3 +108,53 @@ CSSのコメントアウトは
 も使用することができます。
 
 これは、scss内だけでのコメントになりますので、cssに反映されることはありません。
+
+## ネストについて 
+
+SCSSでは、ネストを使用して記述することができます。
+
+例えば、h1をhoverした時に色を変えたい場合CSSで記述すると
+
+```
+h1 {
+  color: black;
+}
+h1:hover {
+  color: red;
+}
+```
+となりますが、SCSSで記述すると
+
+```
+h1 {
+  color: black;
+  &:hover {
+    color: red;
+  }
+}
+```
+となり、h1に関係するセレクタを入れ子にして書くことができます。このSCSSを変換すると上のCSSに変換されます。
+
+「**&**」マークは親セレクタを指します。
+
+このマークの使い方はもう一つあります。
+
+`index.html`の内容を以下に変更しましょう。
+
+```index.html
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>見出し</h1>
+    </header>
+  </body>
+</html>
+```
